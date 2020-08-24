@@ -29,8 +29,10 @@ Run the front-end
 npm run watch
 ```
 Credentials
+```
 username: admin
 password: admin
+```
 
 Browse the website using
 http://localhost:8000
