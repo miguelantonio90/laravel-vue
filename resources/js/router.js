@@ -1,7 +1,7 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 import Dashboard from './components/pages/Dashboard';
-import UserList from './components/user/User.list'
+import UserList from './components/user/List'
 import LoginPage from './components/login/Login';
 import store from './store/index';
 
@@ -28,8 +28,8 @@ export default new VueRouter({
                 { name: 'dashboard' }
             ]
         }
-    },{
-        path: '/user/list',
+    }, {
+        path: '/users',
         name: 'UserList',
         component: UserList,
         beforeEnter: guard,

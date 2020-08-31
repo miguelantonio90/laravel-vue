@@ -2,7 +2,8 @@ import Vue from "vue"
 import Vuex from "vuex"
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import login from './login';
+import login from './loginStore';
+import user from './userStore'
 
 
 Vue.use(Vuex, VueAxios, axios);
@@ -10,7 +11,8 @@ Vue.use(Vuex, VueAxios, axios);
 export default new Vuex.Store({
     namespaced: true,
     modules: {
-        login
+        login,
+        user
     },
     state: {
         windowHeight: 0,

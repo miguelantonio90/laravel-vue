@@ -1,5 +1,8 @@
 <template>
-  <v-main fluid grid-list-xl>Home...{{lorem}}</v-main>
+  <v-card>
+    <v-card-title>Dashboard</v-card-title>
+    <v-card-text>{{lorem}}</v-card-text>
+  </v-card>
 </template>
 
 <script>

@@ -1,11 +1,11 @@
 //Core components
-import Menu from '../components/core/Menu.vue';
 import Footer from '../components/core/PageFooter.vue'
+import DatePicker from '../components/core/DatePicker.vue'
 
 function setupComponents(Vue) {
 
-    Vue.component('menu-navigation', Menu);
     Vue.component('page-footer', Footer);
+    Vue.component('date-picker', DatePicker);
 }
 export {
     setupComponents

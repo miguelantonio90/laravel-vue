@@ -28,11 +28,11 @@ class LoginController extends Controller
                 $request->password
             ],
             function (Request $request) {
-                User::create($request);
+                (new User())->create($request);
 
                 return ResponseHelper::jsonResponse(null, Response::HTTP_OK, config('messages.success'))->send();
-            });
-
+            }
+        );
     }
 
     /**
@@ -50,7 +50,6 @@ class LoginController extends Controller
         } else {
             return ResponseHelper::jsonResponse(null, Response::HTTP_BAD_REQUEST, config('messages.fail'))->send();
         }
-
     }
 
     /**
@@ -63,5 +62,4 @@ class LoginController extends Controller
     {
         return Auth::guard('user')->attempt(array('username' => $username, 'password' => $password));
     }
-
 }

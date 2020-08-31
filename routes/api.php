@@ -20,9 +20,14 @@ Route::post('v1/login', 'API\LoginController@login');
 
 
 Route::middleware('auth:user')->prefix('v1/')->group(function () {
-    
 });
 
-Route::get('/login',function(){
+Route::get('/login', function () {
     return ('Login Fail !!!');
 })->name('login');
+
+/**User routes */
+Route::get('v1/users', 'API\UserController@index');
+Route::post('v1/users', 'API\UserController@store');
+Route::put('v1/users/{id}','API\UserController@update');
+Route::delete('v1/users/{id}', 'API\UserController@destroy');

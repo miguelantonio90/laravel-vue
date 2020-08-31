@@ -23,10 +23,43 @@ const get = (url) => {
         }
     });
 }
+const remove = (url, creds) => {
+    return axios.delete(url, creds, {
+        headers: {
+            Authorization: getToken()
+        }
+    });
+}
+const put = (url, creds) => {
+    return axios.put(url, creds, {
+        headers: {
+            Authorization: getToken()
+        }
+    });
+}
+
+/**User API */
+const fetchUsers = () => {
+    return get('/api/v1/users')
+}
+
+const createUser = (user) => {
+    return post('/api/v1/users', user)
+}
+
+const updateUser = (user) => {
+    return put('/api/v1/users/' + user.id, user)
+}
+
+const deleteUser = (userId) => {
+    return remove('/api/v1/users/' + userId)
+}
 
 //Register the methods
 export default {
-    get: get,
-    post: post,
-    login: login
+    login: login,
+    fetchUsers: fetchUsers,
+    createUser: createUser,
+    updateUser: updateUser,
+    deleteUser: deleteUser
 }

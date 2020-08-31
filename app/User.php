@@ -18,7 +18,7 @@ class User extends Authenticatable implements JWTSubject
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -26,32 +26,41 @@ class User extends Authenticatable implements JWTSubject
     /**
      * @var array
      */
-    protected $fillable = ['name','email','username', 'password', 'created_at', 'updated_at'];
+    protected $fillable = ['firstName', 'lastName', 'username', 'email', 'password', 'nid', 'sexo', 'birthday', 'age', 'race', 'sons', 'salary', 'position', 'type'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function contacts()
+
+    public function roles()
     {
-        return $this->hasMany('App\Contact');
-    }
-    public function roles() {
         return $this
             ->belongsToMany('App\Role')
             ->withTimestamps();
     }
 
-    public static function create(Request $request)
+    public function create(Request $request)
     {
         $user = new User();
 
-        if (!empty($request->get('username'))) {
-            $user->username = $request->get('username');
-        }
-        if (!empty($request->get('password'))) {
-            $user->password = bcrypt($request->get('password'));
-        }
+        foreach ($this->fillable as $key => $value) {
+            switch ($value) {
+                case 'username':
+                    if (!empty($request->get($value))) {
+                        $user->username = $request->get($value);
+                    }
+                    break;
+                case 'password':
+                    if (!empty($request->get($value))) {
+                        $user->password = bcrypt($request->get($value));
+                    }
+                    break;
 
+                default:
+                    $user->$value = $request->get($value);
+                    break;
+            }
+        }
         $user->save();
 
         return $user;
