@@ -41486,3 +41486,61 @@ body.swal2-toast-column .swal2-toast .swal2-validation-message {
   font-size: 1em;
 }
 
+.theme--dark.v-application {
+  background-color: #181818;
+}
+
+.theme--dark.v-card {
+  background-color: #232323;
+}
+
+.theme--dark.v-data-table {
+  background-color: #232323;
+}
+
+.theme--dark.v-tabs-items {
+  background-color: #232323;
+}
+
+.theme--dark.v-tabs .v-tabs-bar {
+  background-color: #232323;
+}
+
+.fade-enter-active {
+  transition-property: opacity;
+  transition-duration: 0.25s;
+  transition-delay: 0.25s;
+}
+
+.fade-leave-active {
+  transition-property: opacity;
+  transition-duration: 0.25s;
+  opacity: 0;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #222;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #444;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.6);
+  background-color: #333;
+}
+
+::-webkit-scrollbar-track:hover {
+  background-color: #292929;
+}
+

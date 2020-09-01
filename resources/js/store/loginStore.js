@@ -1,9 +1,10 @@
-import Api from "../data/api";
+import api from "../data/api";
 import { getToken, removeToken, saveToken } from "../data/localStorage";
 import router from '../router';
 
 const LOGIN = 'LOGIN'
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+const LOGIN_FAILD = 'LOGIN_FAILD'
 const LOGOUT = 'LOGOUT'
 const SET_USERNAME = 'SET_USERNAME'
 const SET_PASSWORD = 'SET_PASSWORD'
@@ -12,8 +13,6 @@ const state = {
     isLoggedIn: !!getToken(),
     pending: false,
     loading: false,
-    error: false,
-    showResult: false,
     result: '',
     auth: {
         username: '',
@@ -23,7 +22,7 @@ const state = {
 
 // getters
 const getters = {
-    isLoggedIn: state => {
+    loggedIn: state => {
         return state.isLoggedIn
     }
 };
@@ -32,13 +31,16 @@ const getters = {
 const actions = {
     async login({ commit }) {
         commit(LOGIN);
-        await Api
+        await api
             .login(state.auth.username, state.auth.password)
-            .then(jsonResponse => {
-                saveToken(jsonResponse.headers.authorization);
-                commit(LOGIN_SUCCESS);
-                router.push('/')
-            });
+            .then(response => {
+                if (response.status === 200) {
+                    saveToken(response.headers.authorization)
+                    commit(LOGIN_SUCCESS, state.auth.username)
+                    router.push('/')
+                }
+            })
+            .catch(error => commit(LOGIN_FAILD, 'Incorrect user or password'))
     },
     async logout({ commit }) {
         commit(LOGOUT);
@@ -52,9 +54,10 @@ const mutations = {
     [LOGIN](state) {
         state.pending = true;
     },
-    [LOGIN_SUCCESS](state) {
+    [LOGIN_SUCCESS](state, data) {
         state.isLoggedIn = true;
         state.pending = false;
+        state.result = data
     },
     [LOGOUT](state) {
         state.isLoggedIn = false;
@@ -64,6 +67,12 @@ const mutations = {
     },
     [SET_PASSWORD](state, password) {
         state.password = password;
+    },
+    [LOGIN_FAILD](state, error) {
+        this._vm.$Toast.fire({
+            icon: 'error',
+            title: error
+        })
     }
 };
 

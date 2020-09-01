@@ -13,8 +13,6 @@
 */
 
 // Below mention routes are public, user can access those without any restriction.
-// Create New User
-Route::post('v1/sign-up', 'API\LoginController@signUp');
 // Login User
 Route::post('v1/login', 'API\LoginController@login');
 
@@ -29,5 +27,5 @@ Route::get('/login', function () {
 /**User routes */
 Route::get('v1/users', 'API\UserController@index');
 Route::post('v1/users', 'API\UserController@store');
-Route::put('v1/users/{id}','API\UserController@update');
+Route::put('v1/users/{id}', 'API\UserController@update');
 Route::delete('v1/users/{id}', 'API\UserController@destroy');

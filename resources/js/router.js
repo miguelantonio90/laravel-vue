@@ -25,17 +25,17 @@ export default new VueRouter({
         beforeEnter: guard,
         meta: {
             breadcrumb: [
-                { name: 'dashboard' }
+                { name: 'Home' }
             ]
         }
     }, {
         path: '/users',
-        name: 'UserList',
+        name: 'Customers',
         component: UserList,
         beforeEnter: guard,
         meta: {
             breadcrumb: [
-                { name: 'user-list' }
+                { name: 'Customers' }
             ]
         }
     },

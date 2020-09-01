@@ -13,27 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /**
-     * Register a new user
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function signUp(Request $request)
-    {
-
-        InputHelper::inputChecker(
-            $request,
-            [
-                $request->username,
-                $request->password
-            ],
-            function (Request $request) {
-                (new User())->create($request);
-
-                return ResponseHelper::jsonResponse(null, Response::HTTP_OK, config('messages.success'))->send();
-            }
-        );
-    }
 
     /**
      * Login user and return a token
@@ -43,7 +22,6 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $token = $this->guard($request->username, $request->password);
-
 
         if ($token) {
             return ResponseHelper::jsonResponse(null, Response::HTTP_OK, config('messages.success'))->header('Authorization', $token)->send();
