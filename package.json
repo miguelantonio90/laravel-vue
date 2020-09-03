@@ -1,5 +1,5 @@
 {
-    "name": "laravel-vue",
+    "name": "INNELI",
     "version": "1.0.0",
     "description": "# Setup",
     "main": "webpack.mix.js",
@@ -25,6 +25,10 @@
         "vue-axios": "^2.1.4",
         "vue-chartist": "^2.2.0",
         "vue-class-component": "^7.1.0",
+        "vue-flag-icon": "^1.0.6",
+        "vue-i18n": "^8.21.0",
+        "vue-localstorage": "^0.6.2",
+        "vue-perfect-scrollbar": "^0.2.1",
         "vue-persian-datetime-picker": "^2.0.1",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.0.6",
@@ -36,7 +40,16 @@
     },
     "devDependencies": {
         "deepmerge": "^4.2.2",
-        "fibers": "^5.0.0"
+        "eslint": "^7.8.1",
+        "eslint-config-standard": "^14.1.1",
+        "eslint-loader": "^4.0.2",
+        "eslint-plugin-import": "^2.22.0",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-standard": "^4.0.1",
+        "eslint-plugin-vue": "^6.2.2",
+        "fibers": "^5.0.0",
+        "register-service-worker": "^1.7.1"
     },
     "scripts": {
         "dev": "npm run development",

@@ -4,6 +4,7 @@
 namespace App\Http\Helpers;
 
 
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -35,7 +36,7 @@ class InputHelper
                 $function($request);
 
             }
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
 
             ResponseHelper::jsonResponse($exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR, null)->send();
 

@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Helpers\InputHelper;
 use App\Http\Helpers\ResponseHelper;
-use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,10 +14,11 @@ class LoginController extends Controller
 
     /**
      * Login user and return a token
+     *
      * @param Request $request
      * @return JsonResponse
      */
-    public function login(Request $request)
+    public function login(Request $request): JsonResponse
     {
         $token = $this->guard($request->username, $request->password);
 
@@ -32,11 +31,12 @@ class LoginController extends Controller
 
     /**
      * Return auth guard
-     * @param $username
-     * @param $password
-     * @return Auth
+     *
+     * @param string $username
+     * @param string $password
+     * @return string
      */
-    private function guard($username, $password)
+    private function guard(string $username, string $password): string
     {
         return Auth::guard('user')->attempt(array('username' => $username, 'password' => $password));
     }

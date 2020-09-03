@@ -18,7 +18,7 @@ class FirebaseHelper
 
 
         $msg = array('title' => 'تراشیپ', 'sub_title' => $subtitle, 'activitydata' => $Data);
-        $notificationBody = array('subtitle'=>$subtitle);
+        $notificationBody = array('subtitle' => $subtitle);
         $notification = array('title' => 'تراشیپ', 'body' => $subtitle);
 
         $fields = array(

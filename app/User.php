@@ -2,17 +2,16 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
- * @property integer $id
- * @property string $username
- * @property string $password
- * @property string $created_at
- * @property string $updated_at
- * @property Contact[] $contacts
+ * Class User
+ * @package App
+ * @method static findOrFail(int $id)
+ * @method static latest()
  */
 class User extends Authenticatable implements JWTSubject
 {
@@ -29,7 +28,7 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = ['firstName', 'lastName', 'username', 'email', 'password', 'nid', 'sexo', 'birthday', 'age', 'race', 'sons', 'salary', 'position', 'type'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return BelongsToMany
      */
 
     public function roles()
@@ -65,7 +64,6 @@ class User extends Authenticatable implements JWTSubject
 
         return $user;
     }
-
 
 
     /**

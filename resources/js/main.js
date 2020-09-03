@@ -5,60 +5,37 @@
  */
 import Vue from 'vue'
 import App from './App.vue'
-import vuetify from './plugins/vuetify' // path to vuetify export
 import { sync } from 'vuex-router-sync'
-import router from "./router";
-import store from "./store";
-import { setupComponents } from './config/setup-components';
+import router from './router'
+import store from './store'
+import Notifications from './plugins/notifications'
+import vuetify from './plugins/vuetify' // path to vuetify export
+import { setupComponents } from './config/setup-components'
+import { i18n } from './lang'
 
-// Translation provided by Vuetify (javascript)
+Vue.config.productionTip = false
+// const files = require.context('./', true, /\.vue$/i);
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+Vue.use(require('vue-chartist'))
 
-require('./bootstrap');
+// Import bootstrap
+require('./bootstrap')
+
+// Import progressbar
+require('./progressbar')
+
+Vue.prototype.$Toast = Notifications.Toast
+Vue.prototype.$Swal = Notifications.Swal
+
+sync(store, router)
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
+ * components and automatically register them with their 'basename'.
  *
  * Eg. ./components/index.vue -> <example-component></example-component>
  */
-
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-Vue.use(require('vue-chartist'));
-
-//Vue.component('App', require('./index.vue').default);
-
-//Import Vue Filter
-require('./filter');
-
-//Import progressbar
-require('./progressbar');
-
-//Setup custom events
-require('./customEvents');
-
-//Import Sweetalert2
-import Swal from 'sweetalert2'
-window.Swal = Swal
-Vue.prototype.$Swal = Swal;
-
-const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    onOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-})
-window.Toast = Toast
-Vue.prototype.$Toast = Toast;
-
-sync(store, router);
-
-setupComponents(Vue);
+setupComponents(Vue)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -67,11 +44,9 @@ setupComponents(Vue);
  */
 
 new Vue({
-    vuetify,
-    router,
-    store,
-    el: '#app',
-    components: { App },
-    template: '<App/>',
-});
-
+  i18n,
+  vuetify,
+  router,
+  store,
+  render: h => h(App)
+}).$mount('#app')

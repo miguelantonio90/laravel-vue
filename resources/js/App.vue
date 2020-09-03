@@ -19,29 +19,31 @@
       <!-- routes allowAnonymous -->
       <router-view />
     </template>
+    <theme-settings></theme-settings>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions } from 'vuex'
 export default {
   data: () => ({
-    drawer: true,
-    toogleMini: false,
+    drawer: true
   }),
   computed: {
-    ...mapState("login", ["isLoggedIn"]),
+    ...mapState('login', ['isLoggedIn'])
   },
   methods: {
-    ...mapActions("login", ["logout"]),
-    logoutHandler() {
-      this.logout();
-    },
+    ...mapActions('login', ['logout']),
+    logoutHandler () {
+      this.logout()
+    }
   },
-  mounted() {
-    console.log("Component mounted.");
-  },
-};
+  mounted () {
+    console.log('Component mounted.')
+  }
+}
 </script>
+
 <style scoped>
+
 </style>

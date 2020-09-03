@@ -2,28 +2,27 @@
   <div id="app">
     <v-app id="inspire">
       <v-main>
-        <v-container fluid fill-heigth>
+        <v-container fluid fill-heigth class="mt-15">
           <v-layout align-center justify-center>
             <v-flex xs12 sm8 md4 class="elevation-6">
               <v-card>
-                <v-toolbar dark color="gray draker-4">
-                  <v-toolbar-title class="white--text">
-                    <h4>Welcome Back</h4>
+                <v-toolbar color="">
+                  <v-toolbar-title>
+                    <h4>{{ $t('login.welcome') }}</h4>
                   </v-toolbar-title>
                 </v-toolbar>
                 <v-card-text class="pt-4">
                   <div class="layout column align-center">
                     <img src="assets/logo.png" alt="Vue Material Admin" width="180" height="180" />
-                    <h1 class="flex my-4 primary--text">Login Form</h1>
+                    <h1 class="flex my-4 primary--text">{{ $t('login.loginForm') }}</h1>
                   </div>
                   <v-form v-model="valid" ref="form">
                     <v-text-field
                       prepend-icon="mdi-account"
                       name="username"
-                      label="Username"
+                      :label="$t('login.labelUsername')"
                       type="text"
                       v-model="auth.username"
-                      :error="error"
                       :rules="[rules.required]"
                     />
                     <v-text-field
@@ -31,11 +30,10 @@
                       :type="hidePassword ? 'password' : 'text'"
                       :append-icon="hidePassword ? 'mdi-eye' : 'mdi-eye-off'"
                       name="password"
-                      label="Password"
+                      :label="$t('login.labelPassword')"
                       id="password"
                       :rules="[rules.required]"
                       v-model="auth.password"
-                      :error="error"
                       @click:append="hidePassword = !hidePassword"
                     />
                     <v-layout justify-space-between>
@@ -43,7 +41,7 @@
                         @click="submit"
                         block
                         :class="{'blue darken-4 white--text' : valid, disabled:!valid}"
-                      >Login</v-btn>
+                      >{{ $t('login.btnLogin') }}</v-btn>
                     </v-layout>
                   </v-form>
                 </v-card-text>
@@ -57,37 +55,35 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions } from 'vuex'
 
 export default {
-  data() {
+  data () {
     return {
       valid: false,
       hidePassword: true,
       rules: {
-        required: (v) => !!v || "Required.",
-      },
-    };
+        required: (v) => !!v || this.$t('rules.required')
+      }
+    }
   },
   computed: {
-    ...mapState("login", [
-      "isLoggedIn",
-      "auth",
-      "loading",
-      "error",
-      "showResult",
-      "result",
-    ]),
+    ...mapState('login', [
+      'isLoggedIn',
+      'auth',
+      'loading',
+      'result'
+    ])
   },
   methods: {
-    ...mapActions("login", ["login", "showPassword"]),
-    submit() {
+    ...mapActions('login', ['login']),
+    submit () {
       if (this.$refs.form.validate()) {
-        this.login();
+        this.login()
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped>

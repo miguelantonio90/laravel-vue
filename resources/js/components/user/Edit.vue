@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="toogleEditModal" max-width="700px">
+  <v-dialog v-model="toogleEditModal" max-width="600px">
     <v-card>
       <v-card-title>
         <span class="headline">Edit User</span>
@@ -112,8 +112,8 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
-import rules from "../../config/rules";
+import { mapActions, mapState } from 'vuex'
+import rules from '../../config/rules'
 
 export default {
   data: () => ({
@@ -121,21 +121,20 @@ export default {
     nameRules: rules.nameRules,
     emailRules: rules.emailRules,
     passwordRules: rules.passwordRules,
-    usernameRules: rules.usernameRules,
+    usernameRules: rules.usernameRules
   }),
   methods: {
-    ...mapActions("user", ["updateUser", "toogleEditModal"]),
+    ...mapActions('user', ['updateUser', 'toogleEditModal'])
   },
   computed: {
-    ...mapState("user", [
-      "editUser",
-      "userRoles",
-      "isActionInProgress",
-      "sexoItems",
-      "raceItems",
-    ]),
-  },
-};
+    ...mapState('user', [
+      'editUser',
+      'userRoles',
+      'sexoItems',
+      'raceItems'
+    ])
+  }
+}
 </script>
 
 <style>

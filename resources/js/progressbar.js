@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueProgressBar from 'vue-progressbar';
+import VueProgressBar from 'vue-progressbar'
 
 Vue.use(VueProgressBar, {
   color: 'rgb(143, 255, 199)',
@@ -9,6 +9,5 @@ Vue.use(VueProgressBar, {
     speed: '0.4s',
     opacity: '0.6s',
     termination: 300
-  },
+  }
 })
- 

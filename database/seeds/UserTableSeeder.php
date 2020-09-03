@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\User;
 use App\Role;
+use App\User;
+use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
 {
@@ -12,10 +12,10 @@ class UserTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {                          
+    {
 
         $role_user = Role::where('name', 'user')->first();
-        $role_admin = Role::where('name', 'admin')->first();                   
+        $role_admin = Role::where('name', 'admin')->first();
 
         $user = new User();
         $user->firstName = 'Miguel';

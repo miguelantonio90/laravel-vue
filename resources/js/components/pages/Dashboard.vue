@@ -66,9 +66,9 @@
 <script>
 export default {
   data: () => ({
-    sparklineData: [423, 446, 675, 510, 590, 610, 423],
-  }),
-};
+    sparklineData: [423, 446, 675, 510, 590, 610, 423]
+  })
+}
 </script>
 
 <style>

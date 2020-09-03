@@ -2,7 +2,7 @@
   <v-row>
     <v-col cols="12" class="py-0">
       <h1 class="font-weight-light mb-0">Page {{ $route.path }}...</h1>
-      <span class="overline">Add other dashboard views</span>
+      <span class="overline">Add other views</span>
       <new-user-modal v-if="showNewModal"></new-user-modal>
       <edit-user-modal v-if="showEditModal"></edit-user-modal>
       <v-card>
@@ -29,6 +29,7 @@
             </v-toolbar>
           </template>
           <template v-slot:item.actions="{ item }">
+            <v-icon small class="mr-2">mdi-eye</v-icon>
             <v-icon small class="mr-2" @click="openEditModal(item.id)">mdi-pencil</v-icon>
             <v-icon small @click="deleteUser(item.id)">mdi-delete</v-icon>
           </template>
@@ -39,52 +40,52 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
-import NewUserModal from "./New";
-import EditUserModal from "./Edit";
+import { mapActions, mapState } from 'vuex'
+import NewUserModal from './New'
+import EditUserModal from './Edit'
 
 export default {
-  data() {
+  data () {
     return {
-      search: "",
-    };
+      search: ''
+    }
   },
-  created() {
-    this.getUsers();
+  created () {
+    this.getUsers()
   },
   components: {
     NewUserModal,
-    EditUserModal,
+    EditUserModal
   },
   computed: {
-    ...mapState("user", [
-      "showNewModal",
-      "showEditModal",
-      "users",
-      "userTableColumns",
-      "isTableLoading",
-    ]),
+    ...mapState('user', [
+      'showNewModal',
+      'showEditModal',
+      'users',
+      'userTableColumns',
+      'isTableLoading'
+    ])
   },
   methods: {
-    ...mapActions("user", [
-      "toogleNewModal",
-      "openEditModal",
-      "getUsers",
-      "deleteUser",
+    ...mapActions('user', [
+      'toogleNewModal',
+      'openEditModal',
+      'getUsers',
+      'deleteUser'
     ]),
-    deleteUser(userId) {
-      Swal.fire({
-        title: "Are you sure?",
+    deleteUser (userId) {
+      this.$Swal.fire({
+        title: 'Are you sure?',
         text: "You won't be able to revert this!",
-        icon: "warning",
+        icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: "Yes, delete it!",
+        confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
-        if (result.value) this.$store.dispatch("user/deleteUser", userId);
-      });
-    },
-  },
-};
+        if (result.value) this.$store.dispatch('user/deleteUser', userId)
+      })
+    }
+  }
+}
 </script>
 
 <style scoped>

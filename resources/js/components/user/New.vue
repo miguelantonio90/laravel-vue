@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="toogleNewModal" max-width="700px">
+  <v-dialog v-model="toogleNewModal" max-width="600px">
     <v-card>
       <v-card-title>
         <span class="headline">New User</span>
@@ -111,8 +111,8 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
-import rules from "../../config/rules";
+import { mapActions, mapState } from 'vuex'
+import rules from '../../config/rules'
 
 export default {
   data: () => ({
@@ -120,21 +120,20 @@ export default {
     nameRules: rules.nameRules,
     emailRules: rules.emailRules,
     passwordRules: rules.passwordRules,
-    usernameRules: rules.usernameRules,
+    usernameRules: rules.usernameRules
   }),
   methods: {
-    ...mapActions("user", ["createUser", "toogleNewModal"]),
+    ...mapActions('user', ['createUser', 'toogleNewModal'])
   },
   computed: {
-    ...mapState("user", [
-      "newUser",
-      "userRoles",
-      "isActionInProgress",
-      "sexoItems",
-      "raceItems",
-    ]),
-  },
-};
+    ...mapState('user', [
+      'newUser',
+      'userRoles',
+      'sexoItems',
+      'raceItems'
+    ])
+  }
+}
 </script>
 
 <style>

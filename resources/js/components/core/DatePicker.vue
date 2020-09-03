@@ -41,39 +41,39 @@ export default {
   props: {
     label: {
       type: String,
-      default: "",
+      default: ''
     },
     activePicker: {
       type: String,
-      default: "YEAR",
+      default: 'YEAR'
     },
     value: {
       type: [String],
-      required: false,
+      required: false
     },
     showIcon: {
       type: [Boolean],
       default: false,
-      required: false,
-    },
+      required: false
+    }
   },
   data: () => ({
     date: null,
-    menu: false,
+    menu: false
   }),
   watch: {
-    menu(val) {
+    menu (val) {
       val &&
-        setTimeout(() => (this.$refs.picker.activePicker = this.activePicker));
-    },
+        setTimeout(() => (this.$refs.picker.activePicker = this.activePicker))
+    }
   },
   methods: {
-    save(date) {
-      this.$refs.menu.save(date);
-      this.$emit("save", date);
-    },
-  },
-};
+    save (date) {
+      this.$refs.menu.save(date)
+      this.$emit('save', date)
+    }
+  }
+}
 </script>
 
 <style>
